@@ -9,10 +9,10 @@ on:
       - master
 
 jobs:
-  flutter:
+  test_and_coverage:
     runs-on: ubuntu-latest
     container:
-      image: google/dart:stable
+      image: google/dart:latest
 
     steps:
       - uses: actions/checkout@v1
