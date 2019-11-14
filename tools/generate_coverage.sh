@@ -20,3 +20,5 @@ format_coverage \
     --out=coverage/lcov.info \
     --packages=.packages \
     --report-on=lib
+
+exit 0
