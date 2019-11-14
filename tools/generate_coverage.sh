@@ -1,4 +1,5 @@
 pub global activate coverage 
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 OBS_PORT=9291
 echo "Collecting coverage on port $OBS_PORT..."
