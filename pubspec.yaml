@@ -10,7 +10,6 @@ environment:
 dependencies:
   pedantic: ^1.8.0
   meta: ^1.1.8
-  intl: ^0.16.0
 
 dev_dependencies:
   test: ^1.6.0

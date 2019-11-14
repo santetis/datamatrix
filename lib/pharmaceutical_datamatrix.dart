@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
 class Cip7 {
