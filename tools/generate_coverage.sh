@@ -1,3 +1,5 @@
+pub global activate coverage 
+
 OBS_PORT=9291
 echo "Collecting coverage on port $OBS_PORT..."
 #   Start test in one VM
