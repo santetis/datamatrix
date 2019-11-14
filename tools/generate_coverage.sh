@@ -1,7 +1,7 @@
-OBS_PORT=9292
+OBS_PORT=9291
 echo "Collecting coverage on port $OBS_PORT..."
 #   Start test in one VM
-dart \
+dart --disable-service-auth-codes \
     --enable-vm-service=$OBS_PORT \
     --pause-isolates-on-exit \
     test/coverage.dart &
