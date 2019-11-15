@@ -1,9 +1,9 @@
 coverage:
   status:
-    # pull-requests only
     patch:
       default:
-        threshold: 0.1%
+        threshold: 1%
+  precision: 2
 
 ignore:
   - "lib/src/**/*.g.dart"
