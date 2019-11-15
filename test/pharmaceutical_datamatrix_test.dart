@@ -28,5 +28,16 @@ void main() {
     );
 
     expect(datamatrix.cip13.toString(), '3400949497294');
+    expect(datamatrix.toString(), datamatrixData);
+  });
+
+  test('valid without expiration', () {
+    final datamatrixData = '0103400949497294170101121012lt';
+    final datamatrix = PharmaceuticalDatamatrix.fromDatamatrix(
+      datamatrix: datamatrixData,
+    );
+
+    expect(datamatrix.cip13.toString(), '3400949497294');
+    expect(datamatrix.toString(), datamatrixData);
   });
 }

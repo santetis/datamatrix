@@ -40,15 +40,32 @@ class PharmaceuticalDatamatrix {
   }
 
   String toString() {
-    final sb = StringBuffer('010');
-
+    final sb = StringBuffer('010')
+      ..write('$cip13')
+      ..write('17')
+      ..write('${_formatDate(manufactured)}');
+    if (expiration != null) {
+      sb.write('${_formatDate(expiration)}');
+    }
+    sb..write('10')..write('$lot');
     return sb.toString();
   }
 }
 
+String _formatDate(DateTime date) {
+  final sb = StringBuffer()
+    ..write('${date.day.toString().padLeft(2, '0')}')
+    ..write('${date.month.toString().padLeft(2, '0')}')
+    ..write('${(date.year - 2000).toString().padLeft(2, '0')}');
+  return sb.toString();
+}
+
 DateTime _parseDate(String date) {
+  if (date == null) {
+    return null;
+  }
   final day = int.tryParse(date.substring(0, 2));
   final month = int.tryParse(date.substring(2, 4));
-  final year = int.tryParse(date.substring(4));
+  final year = int.tryParse(date.substring(4)) + 2000;
   return DateTime(year, month, day);
 }
