@@ -1,5 +1,5 @@
 coverage:
-  status:
+  # status:
   # pull-requests only
   # patch:
   #   default:
