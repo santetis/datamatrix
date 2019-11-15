@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:pharmaceutical_datamatrix/pharmaceutical_datamatrix.dart';
 import 'package:pharmaceutical_datamatrix/src/cip7.dart';
 
 enum PharmaceuticalType {
@@ -6,9 +7,9 @@ enum PharmaceuticalType {
   product,
 }
 
-//  todo: add more type
 const _pharmaceuticalTypeMap = {
   '00': PharmaceuticalType.speciality,
+  '01': PharmaceuticalType.product,
 };
 
 enum PharmaceuticalClassification {
@@ -50,8 +51,6 @@ class PharmaceuticalCip13 {
   }) {
     if (prefix != '34') {
       throw ArgumentError.value(prefix, 'prefix', 'should be equal to 34');
-    } else if (type == null) {
-      throw ArgumentError.notNull('type');
     } else if (classification == null) {
       throw ArgumentError.notNull('classification');
     }
@@ -63,7 +62,7 @@ class PharmaceuticalCip13 {
     }
     final type = cip13.substring(2, 4);
     if (!_pharmaceuticalTypeMap.keys.contains(type)) {
-      throw ArgumentError.value(type, 'type', 'valid value are 00');
+      throw ArgumentError.value(type, 'type', 'valid value are 00, 01');
     }
     final classification = cip13.substring(4, 5);
     if (!RegExp(r'\d').hasMatch(classification)) {

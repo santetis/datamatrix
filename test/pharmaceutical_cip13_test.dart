@@ -11,7 +11,7 @@ void main() {
 
   test('invalid prefix', () {
     expect(
-      () => PharmaceuticalCip13.fromString('4200935510259'),
+      () => PharmaceuticalCip13.fromString('4200935510254'),
       throwsA(isArgumentError),
     );
   });
