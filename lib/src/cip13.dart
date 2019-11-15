@@ -86,12 +86,15 @@ class PharmaceuticalCip13 {
   String toString() {
     final sb = StringBuffer(prefix);
     final _type = _pharmaceuticalTypeMap.entries
-        .firstWhere((entry) => entry.value == type, orElse: () => null)
+        .firstWhere(
+          (entry) => entry.value == type,
+        )
         ?.key;
     sb.write(_type);
     final _classification = _pharmaceuticalClassificationMap.entries
-        .firstWhere((entry) => entry.value == classification,
-            orElse: () => null)
+        .firstWhere(
+          (entry) => entry.value == classification,
+        )
         ?.key;
     sb.write(_classification);
     sb.write('$cip7$crc');
