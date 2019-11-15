@@ -1,9 +1,9 @@
 coverage:
   status:
-    # pull-requests only
-    patch:
-      default:
-        threshold: 1%
+  # pull-requests only
+  # patch:
+  #   default:
+  #     threshold: 1%
   precision: 2
   round: down
   range: "90...100"
