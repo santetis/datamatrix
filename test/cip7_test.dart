@@ -12,11 +12,7 @@ void main() {
   });
 
   test('valid', () {
-    expect(
-      () => Cip7(
-        data: '111111',
-      ),
-      throwsA(isArgumentError),
-    );
+    final cip7 = Cip7(data: '1111111');
+    expect(cip7.data, '1111111');
   });
 }
