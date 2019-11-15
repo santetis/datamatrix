@@ -30,6 +30,13 @@ void main() {
     );
   });
 
+  test('valid but not supported classification', () {
+    expect(
+      () => PharmaceuticalCip13.fromString('3400135510257'),
+      throwsA(isArgumentError),
+    );
+  });
+
   test('invalid crc', () {
     expect(
       () => PharmaceuticalCip13.fromString('3400935510255'),
