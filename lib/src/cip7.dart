@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 class Cip7 {
   final String data;
 
-  const Cip7._({@required this.data});
+  Cip7._({@required this.data});
 
   factory Cip7.fromData({@required String data}) {
     if (data?.length != 7) {

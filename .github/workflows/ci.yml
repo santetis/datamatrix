@@ -18,6 +18,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: pub get
+      - name: Dart analyze
+        run: dartanalyzer --options=analysis_options.yaml --fatal-hints --fatal-warnings .
       - name: Run tests
         run: pub run test
       - name: Generating coverage
