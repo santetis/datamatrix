@@ -35,6 +35,7 @@ int _calculateCip13Crc(String data) {
   return 9 - ((result - 1) % 10);
 }
 
+@immutable
 class PharmaceuticalCip13 {
   final String prefix;
   final PharmaceuticalType type;
@@ -42,21 +43,15 @@ class PharmaceuticalCip13 {
   final Cip7 cip7;
   final String crc;
 
-  PharmaceuticalCip13._({
+  const PharmaceuticalCip13._({
     @required this.prefix,
     @required this.type,
     @required this.classification,
     @required this.cip7,
     @required this.crc,
-  }) {
-    if (prefix != '34') {
-      throw ArgumentError.value(prefix, 'prefix', 'should be equal to 34');
-    } else if (classification == null) {
-      throw ArgumentError.notNull('classification');
-    }
-  }
+  });
 
-  factory PharmaceuticalCip13.fromString(String cip13) {
+  factory PharmaceuticalCip13.fromString({@required String cip13}) {
     if (cip13.length != 13) {
       throw ArgumentError.value(cip13, 'cip13', 'length should be equal to 13');
     }
@@ -64,21 +59,31 @@ class PharmaceuticalCip13 {
     if (!_pharmaceuticalTypeMap.keys.contains(type)) {
       throw ArgumentError.value(type, 'type', 'valid value are 00, 01');
     }
-    final classification = cip13.substring(4, 5);
-    if (!RegExp(r'\d').hasMatch(classification)) {
+    final classificationValue = cip13.substring(4, 5);
+    if (!RegExp(r'\d').hasMatch(classificationValue)) {
       throw ArgumentError.value(
-          classification, 'classification', 'should be a number');
+          classificationValue, 'classification', 'should be a number');
     }
     final data = cip13.substring(0, cip13.length - 1);
     final crc = _calculateCip13Crc(data);
     if ('$crc' != cip13.substring(cip13.length - 1)) {
       throw ArgumentError.value(crc, 'crc', 'is not correct');
     }
+    final prefix = cip13.substring(0, 2);
+    if (prefix != '34') {
+      throw ArgumentError.value(prefix, 'prefix', 'should be equal to 34');
+    }
+    final classification =
+        _pharmaceuticalClassificationMap[classificationValue];
+    if (classification == null) {
+      throw ArgumentError.notNull('classification');
+    }
+
     return PharmaceuticalCip13._(
-      prefix: cip13.substring(0, 2),
+      prefix: prefix,
       type: _pharmaceuticalTypeMap[type],
-      classification: _pharmaceuticalClassificationMap[classification],
-      cip7: Cip7(data: cip13.substring(5, cip13.length - 1)),
+      classification: classification,
+      cip7: Cip7.fromData(data: cip13.substring(5, cip13.length - 1)),
       crc: '$crc',
     );
   }

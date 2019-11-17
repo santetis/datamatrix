@@ -1,13 +1,14 @@
 import 'package:meta/meta.dart';
 import 'package:pharmaceutical_datamatrix/src/cip13.dart';
 
+@immutable
 class PharmaceuticalDatamatrix {
   final PharmaceuticalCip13 cip13;
   final DateTime manufactured;
   final DateTime expiration;
   final String lot;
 
-  PharmaceuticalDatamatrix({
+  const PharmaceuticalDatamatrix({
     @required this.cip13,
     @required this.manufactured,
     @required this.expiration,
@@ -32,7 +33,7 @@ class PharmaceuticalDatamatrix {
     final lot = match.group(6);
 
     return PharmaceuticalDatamatrix(
-      cip13: PharmaceuticalCip13.fromString(cip13),
+      cip13: PharmaceuticalCip13.fromString(cip13: cip13),
       manufactured: _parseDate(created),
       expiration: _parseDate(expiration),
       lot: lot,
