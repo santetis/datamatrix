@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 
 @immutable
 class Cip7 {
-  String data;
+  final String data;
 
   Cip7._({@required this.data});
 
